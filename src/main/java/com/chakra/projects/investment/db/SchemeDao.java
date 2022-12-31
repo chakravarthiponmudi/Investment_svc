@@ -19,6 +19,10 @@ public interface SchemeDao {
     @RegisterRowMapper(SchemeMapper.class)
     List<Scheme> findAll();
 
+    @SqlQuery("select * from SCHEME where FOLIO_ID = :folio_id")
+    @RegisterRowMapper(SchemeMapper.class)
+    List<Scheme> findByFolioId(@Bind("folio_id") Integer folio_id );
+
     @SqlUpdate("insert into SCHEME (FOLIO_ID, NAME, TYPE,ADVISOR, ISIN) VALUES(:folio_id, :scheme.schemeName, :scheme.type,:scheme.advisor, :scheme.isin)")
     Number save(@Bind("folio_id") Integer folio_id, @BindBean("scheme") Scheme scheme);
 

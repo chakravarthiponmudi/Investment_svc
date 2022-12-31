@@ -10,6 +10,10 @@ import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.stereotype.Service;
 
+import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class FundManagerSvc {
     public Number addFolio(Jdbi jdbi, Folio folio) {
@@ -46,6 +50,25 @@ public class FundManagerSvc {
 
     }
 
+    public Folio getFolio(Jdbi jdbi, String folio_no) {
+        try (Handle h = jdbi.open()) {
+            FolioDao fDao = h.attach(FolioDao.class);
+            SchemeDao sDao = h.attach(SchemeDao.class);
+            TransactionDao tDao = h.attach(TransactionDao.class);
+            Folio folioObj=  fDao.findByNo(folio_no);
+            if (folioObj == null) {
+                return null;
+            }
+            List<Scheme> schemes = sDao.findByFolioId(folioObj.getId());
+            schemes = schemes.stream().map(scheme -> {
+                List<FundTransaction> transactions = tDao.findBySchemeIsin(scheme.getIsin());
+                scheme.setTransactions(transactions);
+                return scheme;
+            }).collect(Collectors.toList());
+            folioObj.setSchemes(schemes);
+            return folioObj;
+        }
+    }
 
     public Iterable<Scheme> getAllSchemes(Jdbi jdbi) {
         try (Handle h = jdbi.open()) {

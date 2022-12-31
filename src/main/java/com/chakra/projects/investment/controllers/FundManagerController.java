@@ -5,9 +5,12 @@ import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.service.funds.FundManagerSvc;
 import org.jdbi.v3.core.Jdbi;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,6 +34,15 @@ public class FundManagerController {
         return fundManagerSvc.getAllFolio(jdbi);
     }
 
+
+    @GetMapping(path="/number")
+    public ResponseEntity<Folio> getFolio(@RequestParam("folio_no") String folioNo) {
+        Folio folio = fundManagerSvc.getFolio(jdbi, folioNo);
+        if (folio == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Folio>(folio, HttpStatus.OK);
+    }
 
     @GetMapping(path="/schemes")
     public Iterable<Scheme> getAllSchemes() {

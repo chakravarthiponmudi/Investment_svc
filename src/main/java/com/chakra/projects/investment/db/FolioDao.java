@@ -25,6 +25,10 @@ public interface FolioDao {
     @RegisterRowMapper(FolioMapper.class)
     List<Folio> findAll();
 
+    @SqlQuery("select * from FOLIO where FOLIO_NO = :folio_no")
+    @RegisterRowMapper(FolioMapper.class)
+    Folio findByNo(@Bind("folio_no") String folio_no );
+
     @SqlUpdate("insert into FOLIO (FOLIO_NO, AMC) values(:folioNo, :amc)")
     Number save(@BindBean Folio folio);
 
