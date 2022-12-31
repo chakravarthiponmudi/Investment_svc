@@ -21,6 +21,9 @@ public class FundTransaction {
     private double nav;
     @JsonProperty("balance")
     private double runningUnitBalance;
-    private double dividend_rate;
+    @JsonProperty("dividend_rate")
+    private double dividendRate;
+
+    private String isin;
 
 }
