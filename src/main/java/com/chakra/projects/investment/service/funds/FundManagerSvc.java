@@ -20,39 +20,21 @@ public class FundManagerSvc {
 //        this.folioDao = folioDao;
 //    }
 
-    public void addFolio(Folio folio) {
-//        folioRepo.save(folio);
+    public Number addFolio(Jdbi jdbi, Folio folio) {
+
+        try (Handle h = jdbi.open()) {
+            FolioDao f = h.attach(FolioDao.class);
+            return f.save(folio);
+        }
     }
 
     public Iterable<Folio> getAllFolio(Jdbi jdbi) {
 
-//        jdbi.installPlugin(new SqlObjectPlugin());
 
         try (Handle h = jdbi.open()) {
             FolioDao f = h.attach(FolioDao.class);
             return f.findAll();
         }
-
-
-
-
-//        return jdbi.withExtension(FolioDao.class, dao -> dao.findAll());
-//        return jdbi.withHandle(handle -> {
-//
-////            handle.execute("CREATE TABLE FOLIO(\n" +
-////                    "    FOLIO_NO VARCHAR(100) NOT NULL,\n" +
-////                    "    AMC VARCHAR(150) NOT NULL,\n" +
-////                    "    FOLIO_ID INTEGER NOT NULL,\n" +
-////                    "--    FOLIO_ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\n" +
-////                    "    PRIMARY KEY (FOLIO_ID)\n" +
-////                    ")");
-//
-//
-//
-//            return handle.createQuery("SELECT * FROM \"FOLIO\" ")
-//                    .map(new FolioMapper())
-//                    .list();
-//        });
 
 
     }

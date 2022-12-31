@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.jdbi.v3.core.Jdbi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,10 @@ public class CAS {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void updateDatabase(Jdbi jdbi) {
+
     }
 
 

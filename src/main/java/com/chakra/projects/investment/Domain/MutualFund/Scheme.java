@@ -20,5 +20,5 @@ public class Scheme {
     private String advisor;
 
     private String isin;
-//    private List<FundTransaction> transactions;
+    private List<FundTransaction> transactions;
 }
