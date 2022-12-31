@@ -38,8 +38,7 @@ public class FileUploadController {
                 .readerFor(CAS.class).readValue(file.getInputStream());
 
         cas.getFolios().forEach(folio -> {
-            Number i = fundMgrService.addFolio(jdbi,folio);
-            System.out.println(i);
+            fundMgrService.addFolio(jdbi,folio);
         });
         return cas;
     }

@@ -21,4 +21,6 @@ public class Scheme {
 
     private String isin;
     private List<FundTransaction> transactions;
+
+    private Integer folio_id;
 }

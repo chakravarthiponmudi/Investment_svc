@@ -1,6 +1,7 @@
 package com.chakra.projects.investment.controllers;
 
 import com.chakra.projects.investment.Domain.MutualFund.Folio;
+import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.service.funds.FundManagerSvc;
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,11 @@ public class FundManagerController {
     @GetMapping(path="/")
     public Iterable<Folio> getAll() {
         return fundManagerSvc.getAllFolio(jdbi);
+    }
+
+
+    @GetMapping(path="/schemes")
+    public Iterable<Scheme> getAllSchemes() {
+        return fundManagerSvc.getAllSchemes(jdbi);
     }
 }
