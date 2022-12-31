@@ -1,20 +1,14 @@
 package com.chakra.projects.investment.Domain.MutualFund;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.util.List;
 
 @Getter
 @Setter
 @ToString
-@Entity
+//@NoArgsConstructor
 public class Folio {
-    @Id
     private Integer id;
 //    private List<Scheme> schemes;
     @JsonProperty("folio")
