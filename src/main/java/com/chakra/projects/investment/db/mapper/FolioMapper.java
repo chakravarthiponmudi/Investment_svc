@@ -23,19 +23,3 @@ public class FolioMapper implements RowMapper<Folio> {
         return obj;
     }
 }
-
-
-//@Component
-//public class CarModelMapper implements RowMapper<CarModel>{
-//
-//    @Override
-//    public CarModel map(ResultSet rs, StatementContext ctx) throws SQLException {
-//        return CarModel.builder()
-//                .id(rs.getLong("id"))
-//                .name(rs.getString("name"))
-//                .sku(rs.getString("sku"))
-//                .year(rs.getInt("year"))
-//                .build();
-//    }
-//
-//}

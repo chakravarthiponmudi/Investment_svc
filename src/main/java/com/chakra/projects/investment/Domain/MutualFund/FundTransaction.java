@@ -26,4 +26,6 @@ public class FundTransaction {
 
     private String isin;
 
+    private String batchId;
+
 }

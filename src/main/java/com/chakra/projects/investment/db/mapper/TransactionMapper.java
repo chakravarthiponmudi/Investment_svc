@@ -22,6 +22,7 @@ public class TransactionMapper implements RowMapper<FundTransaction> {
         obj.setRunningUnitBalance(rs.getDouble("balance"));
         obj.setDividendRate(rs.getDouble("dividend_rate"));
         obj.setIsin(rs.getString("isin"));
+        obj.setBatchId(rs.getString("batch_id"));
         return obj;
     }
 }

@@ -18,6 +18,15 @@ public class SchemeMapper implements RowMapper<Scheme> {
         obj.setType(SchemeType.getSchemeType(rs.getString("type")));
         obj.setIsin(rs.getString("isin"));
         obj.setFolio_id(rs.getInt("folio_id"));
+        obj.setAmfi(rs.getString("amfi"));
+        obj.setOpenNavUnits(rs.getDouble("open_nav_units"));
+        obj.setCloseNavUnits(rs.getDouble("close_nav_units"));
+        obj.setCloseCalculated(rs.getDouble("close_calculated"));
+        obj.setNavDate(rs.getDate("nav_date"));
+        obj.setNavValue(rs.getDouble("nav_value"));
+        obj.setStatementStartDate(rs.getDate("statement_start_date"));
+        obj.setStatementEndDate(rs.getDate("statement_end_date"));
+        obj.setMarketValue(rs.getDouble("market_value"));
         return obj;
     }
 
