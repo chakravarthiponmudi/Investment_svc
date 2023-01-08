@@ -1,6 +1,7 @@
 package com.chakra.projects.investment.db;
 
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
+import com.chakra.projects.investment.db.mapper.FolioMapper;
 import com.chakra.projects.investment.db.mapper.SchemeMapper;
 import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
@@ -8,18 +9,25 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import java.util.Date;
 import java.util.List;
 
 public interface SchemeDao {
 
 
-    @SqlQuery("select * from SCHEME")
+    @SqlQuery("select * from scheme")
     @RegisterRowMapper(SchemeMapper.class)
     List<Scheme> findAll();
 
     @SqlQuery("select * from SCHEME where FOLIO_ID = :folio_id")
     @RegisterRowMapper(SchemeMapper.class)
     List<Scheme> findByFolioId(@Bind("folio_id") Integer folio_id );
+
+
+
+    @SqlQuery("select * from SCHEME where FOLIO_ID = :folio_id and scheme_close_date is null")
+    @RegisterRowMapper(SchemeMapper.class)
+    List<Scheme> findOpenSchemesByFolioId(@Bind("folio_id") Integer folio_id );
 
 
     @SqlQuery("select * from SCHEME where FOLIO_ID = :folio_id and ISIN = :isin")
@@ -42,4 +50,9 @@ public interface SchemeDao {
             + " MARKET_VALUE = :scheme.marketValue"
             + " where isin = :scheme.isin and folio_id = :scheme.folioId")
     void updateScheme(@BindBean("scheme") Scheme scheme);
+
+    @SqlUpdate("UPDATE SCHEME SET  "
+            + " SCHEME_CLOSE_DATE = :date"
+            + " WHERE isin = :isin")
+    int closeFolio(@Bind("isin") String isin, @Bind("date") Date date);
 }

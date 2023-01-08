@@ -8,6 +8,7 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import java.util.Date;
 import java.util.List;
 public interface FolioDao {
 
@@ -25,6 +26,7 @@ public interface FolioDao {
     @RegisterRowMapper(FolioMapper.class)
     List<Folio> findAll();
 
+
     @SqlQuery("select * from FOLIO where FOLIO_NO = :folio_no")
     @RegisterRowMapper(FolioMapper.class)
     Folio findByNo(@Bind("folio_no") String folio_no );
@@ -36,5 +38,7 @@ public interface FolioDao {
     @SqlQuery("select * from FOLIO where FOLIO_NO = :folio_no")
     @RegisterRowMapper(FolioMapper.class)
     Folio getByNo(@Bind("folio_no") String folio_no);
+
+
 
 }

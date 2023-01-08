@@ -43,6 +43,8 @@ public class Scheme {
     private Date statementEndDate;
     private double marketValue;
 
+    private Date schemeCloseDate;
+
     private Integer folioId;
 
     @JsonProperty("valuation")

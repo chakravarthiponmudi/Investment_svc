@@ -27,6 +27,7 @@ public class SchemeMapper implements RowMapper<Scheme> {
         obj.setStatementStartDate(rs.getDate("statement_start_date"));
         obj.setStatementEndDate(rs.getDate("statement_end_date"));
         obj.setMarketValue(rs.getDouble("market_value"));
+        obj.setSchemeCloseDate(rs.getDate("scheme_close_date"));
         return obj;
     }
 

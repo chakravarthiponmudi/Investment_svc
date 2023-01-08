@@ -140,10 +140,10 @@ public class FundManagerSvc {
             return folioObj;
         }
     }
-    public List<Scheme> getSchemeForFolio(Jdbi jdbi, Integer folioId) {
+    public List<Scheme> getSchemeForFolio(Jdbi jdbi, Integer folioId, boolean withClosedFolios) {
         try (Handle h = jdbi.open()) {
             SchemeDao sDao = h.attach(SchemeDao.class);
-            return sDao.findByFolioId(folioId);
+            return withClosedFolios?sDao.findByFolioId(folioId):sDao.findOpenSchemesByFolioId(folioId);
         }
     }
 
@@ -168,5 +168,12 @@ public class FundManagerSvc {
             return dao.findAll();
         }
 
+    }
+
+    public void closeScheme(Jdbi jdbi, String isin, Date date) {
+        try(Handle h = jdbi.open()) {
+            SchemeDao sDao = h.attach(SchemeDao.class);
+            sDao.closeFolio(isin, date);
+        }
     }
 }
