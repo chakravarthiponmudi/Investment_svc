@@ -43,7 +43,7 @@ public class Scheme {
     private Date statementEndDate;
     private double marketValue;
 
-    private Integer folio_id;
+    private Integer folioId;
 
     @JsonProperty("valuation")
     public void periodDeserializer(Map<String,Object> valuation) {

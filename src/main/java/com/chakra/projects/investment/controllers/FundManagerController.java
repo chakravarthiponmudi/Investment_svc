@@ -59,9 +59,10 @@ public class FundManagerController {
         List<Scheme> schemes = fundManagerSvc.getSchemeForFolio(jdbi,folio.getId());
         for(Scheme scheme: schemes) {
             List<FundTransaction> transactions = fundManagerSvc.getTransactionsForScheme(jdbi, scheme.getIsin());
-            amount = transactions.stream()
+            amount += transactions.stream()
                     .filter(transaction -> transaction.getType() == TransactionType.PURCHASE_SIP ||
                         transaction.getType() == TransactionType.PURCHASE ||
+                        transaction.getType() == TransactionType.REDEMPTION ||
                         transaction.getType() == TransactionType.STAMP_DUTY_TAX)
                     .map(FundTransaction::getAmount).reduce(0.0,(accumulator,element ) -> accumulator + element);
         }

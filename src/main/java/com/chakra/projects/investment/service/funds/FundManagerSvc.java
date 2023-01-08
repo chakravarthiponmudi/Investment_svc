@@ -103,6 +103,10 @@ public class FundManagerSvc {
         if (updateCloseNav) {
             existingScheme.setCloseNavUnits(scheme.getCloseNavUnits());
             existingScheme.setStatementEndDate(scheme.getStatementEndDate());
+            existingScheme.setMarketValue(scheme.getMarketValue());
+            existingScheme.setNavValue(scheme.getNavValue());
+            existingScheme.setNavDate(scheme.getNavDate());
+            existingScheme.setCloseCalculated(scheme.getCloseCalculated());
         }
 
         if (updateCloseNav || updateOpenNav) {

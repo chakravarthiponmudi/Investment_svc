@@ -17,7 +17,7 @@ public class SchemeMapper implements RowMapper<Scheme> {
         obj.setSchemeName(rs.getString("name"));
         obj.setType(SchemeType.getSchemeType(rs.getString("type")));
         obj.setIsin(rs.getString("isin"));
-        obj.setFolio_id(rs.getInt("folio_id"));
+        obj.setFolioId(rs.getInt("folio_id"));
         obj.setAmfi(rs.getString("amfi"));
         obj.setOpenNavUnits(rs.getDouble("open_nav_units"));
         obj.setCloseNavUnits(rs.getDouble("close_nav_units"));
