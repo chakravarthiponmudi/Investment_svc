@@ -1,0 +1,544 @@
+{
+  "cas_type":"DETAILED",
+  "statement_period":{
+    "from":"01-Apr-2022",
+    "to":"11-Jan-2023"
+  },
+  "folios":[
+    {
+      "folio":"10827314",
+      "amc":"PPFAS Mutual Fund",
+      "PAN":"AMTPP5003B",
+      "KYC":"OK",
+      "PANKYC":"OK",
+      "schemes":[
+        {
+          "scheme":"Parag Parikh Flexi Cap Fund - Direct Plan",
+          "advisor":"DIRECT",
+          "rta_code":"PP001ZG",
+          "type":"EQUITY",
+          "rta":"CAMS",
+          "isin":"INF879O01027",
+          "amfi":"122639",
+          "open":"3938.379",
+          "close":"7651.058",
+          "close_calculated":"7651.058",
+          "valuation":{
+            "date":"2023-01-10",
+            "value":"390029.51",
+            "nav":"50.9772"
+          },
+          "transactions":[
+            {
+              "date":"2022-04-08",
+              "description":"Purchase Systematic - Instalment 11/181",
+              "amount":"9999.50",
+              "units":"185.150",
+              "nav":"54.0076",
+              "balance":"4123.529",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-04-08",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-04-08",
+              "description":"Purchase Systematic - Instalment 5/169",
+              "amount":"5999.70",
+              "units":"111.090",
+              "nav":"54.0076",
+              "balance":"4234.619",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-04-08",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-05-04",
+              "description":"Purchase Systematic - Instalment 6/169",
+              "amount":"5999.70",
+              "units":"120.844",
+              "nav":"49.6482",
+              "balance":"4355.463",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-05-04",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-05-06",
+              "description":"Purchase Systematic - Instalment 12/181",
+              "amount":"9999.50",
+              "units":"204.038",
+              "nav":"49.0081",
+              "balance":"4559.501",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-05-06",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-06-03",
+              "description":"Purchase Systematic - Instalment 7/169",
+              "amount":"5999.70",
+              "units":"121.641",
+              "nav":"49.3231",
+              "balance":"4681.142",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-06-03",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-06-07",
+              "description":"Purchase Systematic - Instalment 13/181",
+              "amount":"9999.50",
+              "units":"204.712",
+              "nav":"48.8466",
+              "balance":"4885.854",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-06-07",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-07-04",
+              "description":"Purchase Systematic - Instalment 8/169",
+              "amount":"5999.70",
+              "units":"127.180",
+              "nav":"47.1749",
+              "balance":"5013.034",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-07-04",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-07-04",
+              "description":"Purchase Systematic - Instalment 1/66",
+              "amount":"3999.80",
+              "units":"84.787",
+              "nav":"47.1749",
+              "balance":"5097.821",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-07-04",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.20",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-07-06",
+              "description":"Purchase Systematic - Instalment 14/181",
+              "amount":"9999.50",
+              "units":"209.022",
+              "nav":"47.8395",
+              "balance":"5306.843",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-07-06",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-08-02",
+              "description":"Purchase Systematic - Instalment 2/66",
+              "amount":"3999.80",
+              "units":"78.978",
+              "nav":"50.6442",
+              "balance":"5385.821",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-08-02",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.20",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-08-03",
+              "description":"Purchase Systematic - Instalment 9/169",
+              "amount":"5999.70",
+              "units":"118.641",
+              "nav":"50.5703",
+              "balance":"5504.462",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-08-03",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-08-08",
+              "description":"Purchase Systematic - Instalment 15/181",
+              "amount":"9999.50",
+              "units":"195.292",
+              "nav":"51.2029",
+              "balance":"5699.754",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-08-08",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-02",
+              "description":"Purchase Systematic - Instalment 3/66",
+              "amount":"3999.80",
+              "units":"78.179",
+              "nav":"51.1622",
+              "balance":"5777.933",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-02",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.20",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-05",
+              "description":"Purchase Systematic - Instalment 10/169",
+              "amount":"5999.70",
+              "units":"116.874",
+              "nav":"51.3348",
+              "balance":"5894.807",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-05",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-06",
+              "description":"Purchase Systematic - Instalment 16/181",
+              "amount":"9999.50",
+              "units":"194.299",
+              "nav":"51.4646",
+              "balance":"6089.106",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-06",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-30",
+              "description":"Purchase",
+              "amount":"19999.00",
+              "units":"400.846",
+              "nav":"49.8920",
+              "balance":"6489.952",
+              "type":"PURCHASE",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-09-30",
+              "description":"*** Stamp Duty ***",
+              "amount":"1.00",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-11-02",
+              "description":"Purchase Systematic - Instalment 5/66",
+              "amount":"3999.80",
+              "units":"77.357",
+              "nav":"51.7054",
+              "balance":"6567.309",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-11-02",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.20",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-11-03",
+              "description":"Purchase Systematic - Instalment 12/169",
+              "amount":"5999.70",
+              "units":"116.925",
+              "nav":"51.3125",
+              "balance":"6684.234",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-11-03",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-11-07",
+              "description":"Purchase Systematic - Instalment 18/181",
+              "amount":"9999.50",
+              "units":"194.347",
+              "nav":"51.4519",
+              "balance":"6878.581",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-11-07",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-12-02",
+              "description":"Purchase Systematic - Instalment 6/66",
+              "amount":"3999.80",
+              "units":"75.637",
+              "nav":"52.8816",
+              "balance":"6954.218",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-12-02",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.20",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-12-05",
+              "description":"Purchase Systematic - Instalment 13/169",
+              "amount":"5999.70",
+              "units":"113.441",
+              "nav":"52.8884",
+              "balance":"7067.659",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-12-05",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-12-06",
+              "description":"Purchase Systematic - Instalment 19/181",
+              "amount":"9999.50",
+              "units":"189.988",
+              "nav":"52.6323",
+              "balance":"7257.647",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2022-12-06",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2023-01-02",
+              "description":"Purchase Systematic - Instalment 7/66",
+              "amount":"3999.80",
+              "units":"78.292",
+              "nav":"51.0882",
+              "balance":"7335.939",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2023-01-02",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.20",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2023-01-03",
+              "description":"Purchase Systematic - Instalment 14/169",
+              "amount":"5999.70",
+              "units":"117.122",
+              "nav":"51.2259",
+              "balance":"7453.061",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2023-01-03",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.30",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            },
+            {
+              "date":"2023-01-06",
+              "description":"Purchase Systematic - Instalment 20/181",
+              "amount":"9999.50",
+              "units":"197.997",
+              "nav":"50.5032",
+              "balance":"7651.058",
+              "type":"PURCHASE_SIP",
+              "dividend_rate":null
+            },
+            {
+              "date":"2023-01-06",
+              "description":"*** Stamp Duty ***",
+              "amount":"0.50",
+              "units":null,
+              "nav":null,
+              "balance":null,
+              "type":"STAMP_DUTY_TAX",
+              "dividend_rate":null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "file_type":"CAMS",
+  "investor_info":{
+    "name":"Chakravarthi Pon",
+    "email":"cponmudi@gmail.com",
+    "address":"7A SATHYANARAYANAN STREET\nGNANMURTHY NAGAR\nAMBATTUR\nCHENNAI - 600053\nTamil Nadu\nIndia\nMobile: +919840325414",
+    "mobile":"+919840325414"
+  }
+}

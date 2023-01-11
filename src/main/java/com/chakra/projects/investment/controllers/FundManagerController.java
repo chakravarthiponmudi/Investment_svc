@@ -5,7 +5,9 @@ import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.Domain.MutualFund.TransactionType;
 import com.chakra.projects.investment.service.funds.FundManagerSvc;
+import com.chakra.projects.investment.service.funds.SchemeService;
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +25,10 @@ import java.util.List;
 public class FundManagerController {
 
     public FundManagerSvc fundManagerSvc;
+
+    @Autowired
+    public SchemeService schemeService;
+
     private  Jdbi jdbi;
 
 
@@ -58,15 +64,28 @@ public class FundManagerController {
         }
 
         double amount = 0.0;
-        List<Scheme> schemes = fundManagerSvc.getSchemeForFolio(jdbi,folio.getId(), false);
-        for(Scheme scheme: schemes) {
-            List<FundTransaction> transactions = fundManagerSvc.getTransactionsForScheme(jdbi, scheme.getIsin());
+        for(Scheme scheme: folio.getSchemes()) {
+            List<FundTransaction> transactions = scheme.getTransactions();
             amount += transactions.stream()
                     .filter(transaction -> transaction.getType() == TransactionType.PURCHASE_SIP ||
                         transaction.getType() == TransactionType.PURCHASE ||
                         transaction.getType() == TransactionType.REDEMPTION ||
                         transaction.getType() == TransactionType.STAMP_DUTY_TAX)
                     .map(FundTransaction::getAmount).reduce(0.0,(accumulator,element ) -> accumulator + element);
+        }
+        return new ResponseEntity<>(amount, HttpStatus.OK);
+    }
+
+    @GetMapping(path="/marketvalue")
+    public ResponseEntity<Double> getTotalMarketValueForFolio(@RequestParam("folio_no") String folioNo) {
+        Folio folio = fundManagerSvc.getFolio(jdbi, folioNo);
+        if (folio == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        double amount = 0.0;
+        for(Scheme scheme: folio.getSchemes()) {
+            amount += schemeService.getMarketPrice(jdbi, scheme.getIsin());
         }
         return new ResponseEntity<>(amount, HttpStatus.OK);
     }

@@ -126,7 +126,7 @@ public class FundManagerSvc {
             FolioDao fDao = h.attach(FolioDao.class);
             SchemeDao sDao = h.attach(SchemeDao.class);
             TransactionDao tDao = h.attach(TransactionDao.class);
-            Folio folioObj=  fDao.findByNo(folio_no);
+            Folio folioObj=  fDao.getByNo(folio_no);
             if (folioObj == null) {
                 return null;
             }
