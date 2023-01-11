@@ -3,6 +3,7 @@ package com.chakra.projects.investment.controllers;
 import com.chakra.projects.investment.Domain.MutualFund.Folio;
 import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
+import com.chakra.projects.investment.Domain.MutualFund.SchemeType;
 import com.chakra.projects.investment.Domain.MutualFund.TransactionType;
 import com.chakra.projects.investment.service.funds.FundManagerSvc;
 import com.chakra.projects.investment.service.funds.SchemeService;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path="/folios", produces = "application/json")
@@ -77,17 +80,34 @@ public class FundManagerController {
     }
 
     @GetMapping(path="/marketvalue")
-    public ResponseEntity<Double> getTotalMarketValueForFolio(@RequestParam("folio_no") String folioNo) {
+    public ResponseEntity<Map<String,Double>> getTotalMarketValueForFolio(@RequestParam("folio_no") String folioNo) {
         Folio folio = fundManagerSvc.getFolio(jdbi, folioNo);
         if (folio == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        Map<String,Double> result = new HashMap<>();
+        final String EQUITY = SchemeType.EQUITY.name();
+        final String DEBT = SchemeType.DEBT.name();
+        result.put(EQUITY,Double.valueOf(0));
+        result.put(DEBT,Double.valueOf(0));
 
-        double amount = 0.0;
+
         for(Scheme scheme: folio.getSchemes()) {
-            amount += schemeService.getMarketPrice(jdbi, scheme.getIsin());
+            if (scheme.getType() == SchemeType.EQUITY) {
+                result.compute(EQUITY, (key, val)-> {
+                    val+=schemeService.getMarketPrice(jdbi, scheme.getIsin());
+                    return val;
+                });
+            } else {
+                result.compute(DEBT, (key, val)-> {
+                    val+=schemeService.getMarketPrice(jdbi, scheme.getIsin());
+                    return val;
+                });
+            }
+
         }
-        return new ResponseEntity<>(amount, HttpStatus.OK);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 
@@ -104,6 +124,16 @@ public class FundManagerController {
     @GetMapping(path="/schemes/transactions")
     public Iterable<FundTransaction> getAllTransactions() {
         return fundManagerSvc.getAllTransactions(jdbi);
+    }
+
+
+    class MarketValueContract {
+        double equityAmount;
+        double debtAmount;
+        public MarketValueContract(double equityAmount, double debtAmount) {
+            this.equityAmount = equityAmount;
+            this.debtAmount = debtAmount;
+        }
     }
 
 }
