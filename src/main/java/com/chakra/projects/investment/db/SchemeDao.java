@@ -23,6 +23,10 @@ public interface SchemeDao {
     @RegisterRowMapper(SchemeMapper.class)
     List<Scheme> findByFolioId(@Bind("folio_id") Integer folio_id );
 
+    @SqlQuery("select * from SCHEME where ISIN = :isin")
+    @RegisterRowMapper(SchemeMapper.class)
+    Scheme findByIsin(@Bind("isin") String isin );
+
 
 
     @SqlQuery("select * from SCHEME where FOLIO_ID = :folio_id and scheme_close_date is null")

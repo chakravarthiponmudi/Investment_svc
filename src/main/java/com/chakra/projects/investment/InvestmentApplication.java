@@ -1,5 +1,6 @@
 package com.chakra.projects.investment;
 
+import com.chakra.projects.investment.service.amfi.AMFI;
 import com.chakra.projects.investment.service.storage.StorageProperties;
 import com.chakra.projects.investment.service.storage.StorageService;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +23,13 @@ public class InvestmentApplication {
 	CommandLineRunner init(StorageService service) {
 		return (args) -> {
 			service.init();
+		};
+	}
+
+	@Bean
+	CommandLineRunner initAMFI() {
+		return (args) -> {
+			AMFI.initializeService();
 		};
 	}
 }

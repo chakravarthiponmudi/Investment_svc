@@ -4,6 +4,7 @@ import com.chakra.projects.investment.Domain.MutualFund.Folio;
 import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.Domain.MutualFund.TransactionType;
+import com.chakra.projects.investment.service.amfi.AMFI;
 import com.chakra.projects.investment.service.funds.FundManagerSvc;
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.http.HttpStatus;
@@ -22,16 +23,18 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/Schemes", produces = "application/json")
+@RequestMapping(path="/schemes", produces = "application/json")
 public class SchemeController {
 
     public FundManagerSvc fundManagerSvc;
+    public AMFI amfiSvc;
     private  Jdbi jdbi;
 
 
-    public SchemeController(Jdbi jdbi, FundManagerSvc svc) {
+    public SchemeController(Jdbi jdbi, FundManagerSvc svc, AMFI amfiSvc) {
         this.jdbi = jdbi;
         this.fundManagerSvc  =svc;
+        this.amfiSvc = amfiSvc;
     }
 
 
@@ -63,6 +66,17 @@ public class SchemeController {
 
 
 
+    }
+
+    @GetMapping(path="/{isin}/marketvalue")
+    public ResponseEntity<Double> getMarketValue(@PathVariable(name="isin") String isin) {
+        Scheme scheme = fundManagerSvc.getScheme(jdbi, isin);
+        double navPrice = amfiSvc.getNav(scheme.getIsin());
+        double marketValue = scheme.getMarketValue();
+        if (navPrice != 0) {
+            marketValue = navPrice * scheme.getCloseNavUnits();
+        }
+        return new ResponseEntity<>(marketValue, HttpStatus.OK);
     }
     @GetMapping(path="/")
     public Iterable<Scheme> getAllSchemes() {

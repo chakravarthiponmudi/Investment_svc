@@ -176,4 +176,11 @@ public class FundManagerSvc {
             sDao.closeFolio(isin, date);
         }
     }
+
+    public Scheme getScheme(Jdbi jdbi, String isin) {
+        try(Handle h = jdbi.open()) {
+            SchemeDao sDao = h.attach(SchemeDao.class);
+            return sDao.findByIsin(isin);
+        }
+    }
 }
