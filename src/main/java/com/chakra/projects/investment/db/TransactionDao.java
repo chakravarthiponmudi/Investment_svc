@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public interface TransactionDao {
 
-    @SqlQuery("select * from TRANSACTIONS where ISIN = :isin")
+    @SqlQuery("select * from TRANSACTIONS where ISIN = :isin order by TRANSACTION_DATE")
     @RegisterRowMapper(TransactionMapper.class)
     List<FundTransaction> findBySchemeIsin(@Bind("isin") String isin);
 

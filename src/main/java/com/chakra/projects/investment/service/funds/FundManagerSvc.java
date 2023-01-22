@@ -130,7 +130,7 @@ public class FundManagerSvc {
             if (folioObj == null) {
                 return null;
             }
-            List<Scheme> schemes = sDao.findByFolioId(folioObj.getId());
+            List<Scheme> schemes = sDao.findOpenSchemesByFolioId(folioObj.getId());
             schemes = schemes.stream().map(scheme -> {
                 List<FundTransaction> transactions = tDao.findBySchemeIsin(scheme.getIsin());
                 scheme.setTransactions(transactions);
@@ -140,27 +140,11 @@ public class FundManagerSvc {
             return folioObj;
         }
     }
-    public List<Scheme> getSchemeForFolio(Jdbi jdbi, Integer folioId, boolean withClosedFolios) {
-        try (Handle h = jdbi.open()) {
-            SchemeDao sDao = h.attach(SchemeDao.class);
-            return withClosedFolios?sDao.findByFolioId(folioId):sDao.findOpenSchemesByFolioId(folioId);
-        }
-    }
 
-    public List<FundTransaction> getTransactionsForScheme(Jdbi jdbi, String isin) {
-        try (Handle h = jdbi.open()) {
-            TransactionDao tDao = h.attach(TransactionDao.class);
-            return tDao.findBySchemeIsin(isin);
-        }
-    }
 
-    public Iterable<Scheme> getAllSchemes(Jdbi jdbi) {
-        try (Handle h = jdbi.open()) {
-            SchemeDao dao = h.attach(SchemeDao.class);
-            return dao.findAll();
-        }
 
-    }
+
+
 
     public Iterable<FundTransaction> getAllTransactions(Jdbi jdbi) {
         try (Handle h = jdbi.open()) {
@@ -177,10 +161,5 @@ public class FundManagerSvc {
         }
     }
 
-    public Scheme getScheme(Jdbi jdbi, String isin) {
-        try(Handle h = jdbi.open()) {
-            SchemeDao sDao = h.attach(SchemeDao.class);
-            return sDao.findByIsin(isin);
-        }
-    }
+
 }

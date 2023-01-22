@@ -28,4 +28,22 @@ public class FundTransaction {
 
     private String batchId;
 
+    private double investment;
+
+    private double profit;
+
+
+    public boolean isInvestment() {
+        return this.type == TransactionType.PURCHASE_SIP || this.type == TransactionType.PURCHASE;
+    }
+
+    public boolean isRedemption() {
+        return this.type == TransactionType.REDEMPTION;
+    }
+
+    public boolean isCharges() {
+        return this.type == TransactionType.STT_TAX || this.type == TransactionType.STAMP_DUTY_TAX;
+    }
+
+
 }

@@ -47,6 +47,8 @@ public class Scheme {
 
     private Integer folioId;
 
+    private Double investment;
+
     @JsonProperty("valuation")
     public void periodDeserializer(Map<String,Object> valuation) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -58,4 +60,39 @@ public class Scheme {
             throw new RuntimeException(e);
         }
     }
+
+    public Scheme calculateInvestment() {
+        if (transactions.isEmpty()) {
+            this.investment = 0.0;
+            return this;
+        }
+        double investment =0.0;
+        double unitBalance = 0.0;
+
+        for(FundTransaction transaction : transactions) {
+            if (transaction.isInvestment()) {
+                investment += transaction.getAmount();
+                transaction.setInvestment(investment);
+                unitBalance += transaction.getUnits();
+                double marketValue = transaction.getNav() * transaction.getRunningUnitBalance();
+                transaction.setProfit(marketValue - investment);
+            }
+            if (transaction.isRedemption()) {
+                double redemptionAmount = transaction.getAmount();
+                double marketValue = unitBalance * transaction.getNav();
+                double reductionInInvestment = (redemptionAmount * investment) /marketValue;
+                investment+=reductionInInvestment;
+                unitBalance += transaction.getUnits();
+                marketValue = transaction.getNav() * unitBalance;
+                transaction.setProfit(marketValue - investment);
+            }
+
+        }
+
+        this.investment = investment;
+
+        return this;
+
+    }
+
 }

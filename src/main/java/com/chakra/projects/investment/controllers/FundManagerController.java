@@ -11,12 +11,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -42,7 +37,7 @@ public class FundManagerController {
 
 
 
-
+    @CrossOrigin
     @GetMapping(path="/")
     public Iterable<Folio> getAll() {
 
@@ -50,6 +45,7 @@ public class FundManagerController {
     }
 
 
+    @CrossOrigin
     @GetMapping(path="/number")
     public ResponseEntity<Folio> getFolio(@RequestParam("folio_no") String folioNo) {
         Folio folio = fundManagerSvc.getFolio(jdbi, folioNo);
@@ -59,6 +55,7 @@ public class FundManagerController {
         return new ResponseEntity<Folio>(folio, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping(path="/investment")
     public ResponseEntity<Double> getTotalInvestmentForFolio(@RequestParam("folio_no") String folioNo) {
         Folio folio = fundManagerSvc.getFolio(jdbi, folioNo);
@@ -68,17 +65,13 @@ public class FundManagerController {
 
         double amount = 0.0;
         for(Scheme scheme: folio.getSchemes()) {
-            List<FundTransaction> transactions = scheme.getTransactions();
-            amount += transactions.stream()
-                    .filter(transaction -> transaction.getType() == TransactionType.PURCHASE_SIP ||
-                        transaction.getType() == TransactionType.PURCHASE ||
-                        transaction.getType() == TransactionType.REDEMPTION ||
-                        transaction.getType() == TransactionType.STAMP_DUTY_TAX)
-                    .map(FundTransaction::getAmount).reduce(0.0,(accumulator,element ) -> accumulator + element);
+            scheme = schemeService.calculateInvestment(jdbi, scheme.getIsin());
+            amount += scheme.getInvestment();
         }
         return new ResponseEntity<>(amount, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping(path="/marketvalue")
     public ResponseEntity<Map<String,Double>> getTotalMarketValueForFolio(@RequestParam("folio_no") String folioNo) {
         Folio folio = fundManagerSvc.getFolio(jdbi, folioNo);
@@ -111,29 +104,22 @@ public class FundManagerController {
     }
 
 
+    @CrossOrigin
     @GetMapping(path="/{folioId}/schemes")
     public ResponseEntity<List<Scheme>> getSchemesForFolio(@PathVariable("folioId") int folioId,
             @RequestParam(name="withClosedFolios", required = false) boolean withClosedFolios) {
-        List<Scheme> schemes = fundManagerSvc.getSchemeForFolio(jdbi, folioId, withClosedFolios);
+        List<Scheme> schemes = schemeService.getSchemeForFolio(jdbi, folioId, withClosedFolios);
         if (schemes == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(schemes, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping(path="/schemes/transactions")
     public Iterable<FundTransaction> getAllTransactions() {
         return fundManagerSvc.getAllTransactions(jdbi);
     }
 
-
-    class MarketValueContract {
-        double equityAmount;
-        double debtAmount;
-        public MarketValueContract(double equityAmount, double debtAmount) {
-            this.equityAmount = equityAmount;
-            this.debtAmount = debtAmount;
-        }
-    }
 
 }
