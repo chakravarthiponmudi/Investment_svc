@@ -53,8 +53,8 @@ public class Scheme {
     public void periodDeserializer(Map<String,Object> valuation) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            this.navValue = Double.parseDouble((String) valuation.get("nav"));
-            this.marketValue = Double.parseDouble((String) valuation.get("value"));
+            this.navValue = Double.parseDouble(valuation.get("nav").toString());
+            this.marketValue = Double.parseDouble(valuation.get("value").toString());
             this.navDate = formatter.parse((String) valuation.get("date"));
         } catch (ParseException e) {
             throw new RuntimeException(e);

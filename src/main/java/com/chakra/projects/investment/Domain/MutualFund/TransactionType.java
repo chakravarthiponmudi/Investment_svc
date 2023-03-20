@@ -9,7 +9,10 @@ public enum TransactionType {
     STAMP_DUTY_TAX("***Stamp Duty***"),
 
     STT_TAX("STT_TAX"),
-    REDEMPTION("REDEMPTION");
+    REDEMPTION("REDEMPTION"),
+    SWITCH_IN("SWITCH_IN"),
+    SWITCH_OUT("SWITCH_OUT"),
+    ;
 
     private String description;
 
