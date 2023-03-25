@@ -32,7 +32,7 @@ public class SchemeController {
 
 
     @CrossOrigin
-    @GetMapping(path="/{isin}/Transactions")
+    @GetMapping(path="/{isin}/transactions")
     public ResponseEntity<List<FundTransaction>> getTransactionsForScheme(@PathVariable("isin") String isin) {
         List<FundTransaction> transactions = schemeSvc.getTransactionsForScheme(jdbi, isin);
         if (transactions == null) {

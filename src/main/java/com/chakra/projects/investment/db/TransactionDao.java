@@ -3,6 +3,7 @@ package com.chakra.projects.investment.db;
 import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.db.mapper.TransactionMapper;
+import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -29,8 +30,11 @@ public interface TransactionDao {
     List<Integer> findDuplicateTransaction(@BindBean("t") FundTransaction transaction);
 
     @SqlQuery("select * from TRANSACTIONS")
+//    @RegisterBeanMapper(FundTransaction.class)
     @RegisterRowMapper(TransactionMapper.class)
     List<FundTransaction> findAll();
+
+
 
     @SqlUpdate("INSERT INTO TRANSACTIONS (ISIN, TRANSACTION_DATE, DESCRIPTION, TYPE, AMOUNT, UNITS,NAV, BALANCE,DIVIDEND_RATE, BATCH_ID) "
             + "VALUES(:isin, :t.date, :t.description, :t.type, :t.amount, :t.units, :t.nav, :t.runningUnitBalance, :t.dividendRate, :t.batchId)")

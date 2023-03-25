@@ -14,7 +14,7 @@ public enum TransactionType {
     SWITCH_OUT("SWITCH_OUT"),
     ;
 
-    private String description;
+    private final String description;
 
     TransactionType(String desc) {
         this.description = desc;

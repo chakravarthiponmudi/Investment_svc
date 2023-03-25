@@ -1,5 +1,6 @@
 package com.chakra.projects.investment.service.funds;
 
+import com.chakra.projects.investment.Domain.MutualFund.Folio;
 import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.db.SchemeDao;
@@ -67,6 +68,15 @@ public class SchemeService {
 
 
     }
+
+    public Folio getFolioForScheme(Jdbi jdbi, String isin) {
+        try (Handle h = jdbi.open()) {
+            SchemeDao sDao = h.attach(SchemeDao.class);
+            return sDao.findFolioForScheme(isin);
+        }
+    }
+
+
 
 
 }

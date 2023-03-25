@@ -1,5 +1,6 @@
 package com.chakra.projects.investment.db;
 
+import com.chakra.projects.investment.Domain.MutualFund.Folio;
 import com.chakra.projects.investment.Domain.MutualFund.Scheme;
 import com.chakra.projects.investment.db.mapper.FolioMapper;
 import com.chakra.projects.investment.db.mapper.SchemeMapper;
@@ -8,6 +9,7 @@ import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import org.jdbi.v3.sqlobject.statement.UseRowMapper;
 
 import java.util.Date;
 import java.util.List;
@@ -59,4 +61,9 @@ public interface SchemeDao {
             + " SCHEME_CLOSE_DATE = :date"
             + " WHERE isin = :isin")
     int closeFolio(@Bind("isin") String isin, @Bind("date") Date date);
+
+
+    @SqlQuery("select f.* from scheme s, folio f where s.folio_id = f.folio_id and s.isin = :isin")
+    @RegisterRowMapper(FolioMapper.class)
+    Folio findFolioForScheme(@Bind("isin") String isin);
 }

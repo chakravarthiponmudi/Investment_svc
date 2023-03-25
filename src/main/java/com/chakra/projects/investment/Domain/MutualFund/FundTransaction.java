@@ -2,6 +2,7 @@ package com.chakra.projects.investment.Domain.MutualFund;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class FundTransaction {
 
+    @ColumnName("transaction_id")
     private Integer id;
     private Date date;
     private String description;
