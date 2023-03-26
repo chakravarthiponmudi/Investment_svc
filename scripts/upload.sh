@@ -1,13 +1,8 @@
 #!/bin/sh
 
 curl --location --request POST 'localhost:8443/upload/cams' \
---form 'file=@"/home/chakra/Playground/Investments/investment/upload-dir/20-21_cams.json"'
+--form 'file=@"/home/chakra/Playground/Investments/investment/upload-dir/complete1.json"'
 
 curl --location --request POST 'localhost:8443/upload/cams' \
---form 'file=@"/home/chakra/Playground/Investments/investment/upload-dir/21_22_cams.json"'
+--form 'file=@"/home/chakra/Playground/Investments/investment/upload-dir/complete2.json"'
 
-curl --location --request POST 'localhost:8443/upload/cams' \
---form 'file=@"/home/chakra/Playground/Investments/investment/upload-dir/22-23_1_cams.json"'
-
-curl --location --request POST 'localhost:8443/upload/cams' \
---form 'file=@"/home/chakra/Playground/Investments/investment/upload-dir/22-23-2-cams.json"'
