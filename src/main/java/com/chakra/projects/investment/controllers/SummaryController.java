@@ -5,6 +5,7 @@ import com.chakra.projects.investment.Domain.MutualFund.FundTransaction;
 import com.chakra.projects.investment.response.objects.MonthlyFolioSummary;
 import com.chakra.projects.investment.service.funds.FundManagerSvc;
 import com.chakra.projects.investment.service.funds.SchemeService;
+import com.chakra.projects.investment.service.report.SummaryService;
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,29 +21,25 @@ public class SummaryController {
 
     private final SchemeService schemeService;
 
+    private final SummaryService summaryService;
+
     private Jdbi jdbi;
-    public SummaryController(Jdbi jdbi, FundManagerSvc fundManagerSvc, SchemeService schemeService) {
+    public SummaryController(Jdbi jdbi, FundManagerSvc fundManagerSvc, SchemeService schemeService, SummaryService summaryService) {
         this.jdbi = jdbi;
         this.fundManagerSvc = fundManagerSvc;
         this.schemeService = schemeService;
+        this.summaryService = summaryService;
     }
 
     @CrossOrigin
-    @GetMapping(path = "/")
-    public Map<String, Double> getSummary() {
-        Iterable<FundTransaction> transactions = fundManagerSvc.getAllTransactions(jdbi);
-        HashMap<String, Double> summary = new HashMap<>();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-        transactions.forEach(transaction -> {
-            String year = formatter.format(transaction.getDate());
-            if (summary.containsKey(year)) {
-                summary.put(year, summary.get(year) + transaction.getAmount());
-            } else {
-                summary.put(year, transaction.getAmount());
-            }
-        });
+    @GetMapping()
+    public Map<String, Double> getSummary(@RequestParam("financialYear") boolean isFinancialYear) {
+        if (isFinancialYear) {
+           return summaryService.getSummaryByFiscalYear(jdbi);
+        } else {
+            return summaryService.getSummaryByCalendarYear(jdbi);
+        }
 
-        return summary;
     }
 
     @CrossOrigin
